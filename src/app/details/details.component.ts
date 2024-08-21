@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {HousingService} from "../housing.service";
 import {HousingLocation} from "../housing-location";
+//////////////////////////////ReactiveFormsModule: gives access to template features for forms
+import {FormControl,FormGroup,ReactiveFormsModule } from "@angular/forms";
 
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   template: `
    <article>
      <img class="listing-photo" [src]="housingLocation?.photo" alt="housing location img">
@@ -36,6 +38,11 @@ export class DetailsComponent {
   route:ActivatedRoute = inject(ActivatedRoute);
   housingService= inject(HousingService) ;
   housingLocation : HousingLocation | undefined;
+  applyForm = new FormGroup({
+    FirstName : new FormControl(''),
+    LastName : new FormControl(''),
+    email: new FormControl(''),
+  });
 
 
   constructor(){
